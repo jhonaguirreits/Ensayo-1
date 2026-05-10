@@ -1,38 +1,86 @@
-:root {
-  --bg-dark: #0d1117;
-  --panel-bg: rgba(22, 27, 34, 0.65);
-  --border-color: #30363d;
-  --text-light: #c9d1d9;
-  --text-muted: #8b949e;
-  --code-bg: #090c10;
-  --code-text: #e6edf3;
-  --wokwi-blue: #2f81f7; 
-  --accent: #238636;
-  --error-color: #f85149;
-  --warning-color: #d69e2e;
+/* NAVEGACIÓN */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 25px;
+    background: var(--panel-bg);
+    border-bottom: 1px solid var(--border-color);
 }
 
-[data-theme="light"] {
-  --bg-dark: #f6f8fa;
-  --panel-bg: #ffffff;
-  --border-color: #d0d7de;
-  --text-light: #24292f;
-  --code-bg: #f6f8fa;
-  --code-text: #24292f;
+nav {
+    display: flex;
+    gap: 10px;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-light); transition: 0.3s; }
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
 
-.screen { display: none; min-height: 100vh; flex-direction: column; }
-.screen.active { display: flex; }
+.nav-btn:hover {
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
 
-.login-container { max-width: 400px; margin: 10vh auto; padding: 40px; background: var(--panel-bg); border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
-.flex-icon { display: flex; align-items: center; gap: 8px; }
-.card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+.nav-btn.active {
+    background: var(--wokwi-blue);
+    color: white;
+}
 
-.teacher-table { width: 100%; border-collapse: collapse; text-align: left; }
-.teacher-table th, .teacher-table td { padding: 12px; border-bottom: 1px solid var(--border-color); }
-.teacher-table th { color: var(--wokwi-blue); }
+/* GESTIÓN DE VISTAS */
+.app-view {
+    display: none;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-.monedas-display { background: rgba(214, 158, 46, 0.15); color: var(--warning-color); padding: 4px 12px; border-radius: 20px; font-weight: bold; border: 1px solid rgba(214, 158, 46, 0.3); }
+.app-view.active {
+    display: block;
+}
+
+/* CARDS Y TABLAS */
+.card {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-table th {
+    background: rgba(0,0,0,0.2);
+    text-align: left;
+    padding: 12px;
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0,0,0,0.3);
+    padding: 5px 15px;
+    border-radius: 30px;
+}
