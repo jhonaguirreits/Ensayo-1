@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wokwi Academy V7 | Pro Cloud</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark">
+
+<div id="screen-login" class="screen active">
+  <div class="login-container">
+    <h1 class="login-title flex-icon"><i data-lucide="cloud"></i> Wokwi Academy</h1>
+    <p style="color: var(--text-muted); margin-bottom: 25px;">Acceso exclusivo estudiantes<br><strong>Solo @itspereira.edu.co</strong></p>
+    <button onclick="window.loginConGoogle()" class="btn-login" style="background: white; color: #333; display: flex; align-items: center; justify-content: center; gap: 10px; border: 2px solid #ddd;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="20" alt="Google">
+      Continuar con Google
+    </button>
+  </div>
+</div>
+
+<div id="screen-teacher" class="screen">
+  <header style="justify-content: space-between; padding: 15px 30px;">
+    <div class="header-title flex-icon" style="color: var(--warning-color);">
+      <i data-lucide="shield-alert"></i> Panel del Docente (Admin)
+    </div>
+    <div style="display: flex; gap: 15px;">
+      <button onclick="window.exportarCSV()" class="export-btn flex-icon" style="background-color: var(--accent); color:white; border:none; padding: 8px 15px; border-radius: 6px; cursor: pointer;">
+        <i data-lucide="download"></i> Excel
+      </button>
+      <button onclick="window.logout()" class="export-btn flex-icon" style="background-color: var(--error-color); color:white; border:none; padding: 8px 15px; border-radius: 6px; cursor: pointer;">
+        <i data-lucide="log-out"></i> Salir
+      </button>
+    </div>
+  </header>
+  <main style="padding: 30px; max-width: 1200px; margin: 0 auto; width: 100%;">
+    <div class="card" style="margin-bottom: 20px;">
+      <h2>Estudiantes Registrados</h2>
+    </div>
+    <div class="card" style="overflow-x: auto;">
+      <table class="teacher-table">
+        <thead>
+          <tr><th>Nombre</th><th>Email</th><th>Monedas 🪙</th><th>Nota Final</th></tr>
+        </thead>
+        <tbody id="teacher-tbody"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div id="screen-app" class="screen">
+  <header style="padding: 15px 30px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color);">
+    <div class="header-title flex-icon">
+      <i data-lucide="terminal"></i> Wokwi Academy
+      <div class="stats-panel">
+        <div class="monedas-display">🪙 <span id="user-monedas">0</span></div>
+      </div>
+    </div>
+    <select class="week-selector" id="week-select" onchange="window.loadWeek()" style="padding: 8px; border-radius: 6px; background: var(--code-bg); color: var(--text-light); border: 1px solid var(--border-color);">
+       <option value="1">Semana 1: Primer Contacto (LED)</option>
+       <option value="2">Semana 2: Semáforo Inteligente</option>
+    </select>
+    <div style="display:flex; gap:8px;">
+      <button class="export-btn flex-icon" onclick="window.toggleTheme()" style="padding: 8px 15px; border-radius: 6px; cursor: pointer;"><i data-lucide="sun"></i> Tema</button>
+      <button class="export-btn flex-icon" onclick="window.logout()" style="background: var(--error-color); color: white; padding: 8px 15px; border-radius: 6px; cursor: pointer;"><i data-lucide="log-out"></i> Salir</button>
+    </div>
+  </header>
+  
+  <main style="display: grid; grid-template-columns: 1fr 350px; gap: 20px; padding: 20px; flex-grow: 1;">
+    <div class="card">
+      <h2 id="w-title">Cargando...</h2>
+      <p id="w-intro"></p>
+      <div style="background: var(--code-bg); padding: 15px; border-radius: 8px; margin-top: 15px;">
+        <h3>Código Base:</h3>
+        <pre id="w-code" style="color: var(--code-text);"></pre>
+      </div>
+    </div>
+    
+    <div class="card" style="background: var(--panel-bg);">
+      <h3>Evaluador Automático</h3>
+      <textarea id="code-input" placeholder="Pega tu código aquí..." style="width: 100%; height: 200px; margin-top: 15px; padding: 10px; background: var(--code-bg); color: var(--code-text); border: 1px solid var(--border-color); border-radius: 6px; font-family: monospace;"></textarea>
+      <button onclick="window.verificarCodigo()" style="width: 100%; padding: 12px; margin-top: 15px; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Evaluar Reto</button>
+      <div id="eval-feedback" style="margin-top: 15px; font-weight: bold; text-align: center;"></div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
